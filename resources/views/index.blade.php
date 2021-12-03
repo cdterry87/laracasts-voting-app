@@ -28,8 +28,8 @@
         </div>
     </div>
 
-    <div class="ideas-container space-y-6 my-6 hover:shadow-card transition duration-150 ease-in cursor-pointer">
-        <div class="idea-container bg-white rounded-xl flex">
+    <div class="ideas-container space-y-6 my-6 hover:shadow-card transition duration-150 ease-in">
+        <div class="idea-container bg-white rounded-xl flex cursor-pointer">
             <div class="border-r border-gray-100 px-5 py-8">
                 <div class="text-center">
                     <div class="font-semibold text-2xl">12</div>
@@ -40,16 +40,18 @@
                     <button class="w-20 bg-gray-200 font-bold text-xs uppercase rounded-xl px-4 py-3 border border-gray-200 hover:border-gray-400 transition duration-150 ease-in">Vote</button>
                 </div>
             </div>
-            <div class="flex px-2 py-6">
-                <a href="#" class="flex-none">
-                    <img src="https://source.unsplash.com/200x200/?face&crop=face&v=1" alt="avatar" class="w-14 h-14 rounded-xl">
-                </a>
-                <div class="mx-4">
+            <div class="flex flex-1 px-2 py-6">
+                <div class="flex-none">
+                    <a href="#">
+                        <img src="https://source.unsplash.com/200x200/?face&crop=face&v=1" alt="avatar" class="w-14 h-14 rounded-xl">
+                    </a>
+                </div>
+                <div class="mx-4 w-full">
                     <h4 class="text-xl font-semibold">
                         <a href="#" class="hover:underline">A random title can go here</a>
                     </h4>
                     <div class="text-gray-600 mt-3 line-clamp-3">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam explicabo impedit fugiat, sed eum, velit laborum consequatur tempora voluptates quod fugit ullam, reprehenderit minima dignissimos aliquid veniam voluptate commodi molestias cumque consequuntur minus laudantium in! Eum, necessitatibus aliquid optio nulla fugit quod voluptates ipsum maxime, magni, perferendis atque amet itaque sequi et eveniet praesentium aperiam officia cupiditate rerum saepe a vitae inventore provident! Facere laudantium dolor consequatur incidunt doloribus quibusdam, at, atque corporis molestiae quasi laboriosam odit exercitationem similique ullam eius! Iusto nemo aut quod labore quo eum minima explicabo illo, voluptate vel, similique optio quia a consequatur atque nobis.
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit qui optio ipsam doloremque accusamus impedit eum iusto quis voluptatum, nesciunt dignissimos eaque explicabo vero! Ipsa, voluptas molestias. Praesentium vero ipsum vel dolorem omnis voluptatum, officiis quis eaque earum optio cupiditate odio. Natus error magni labore beatae recusandae placeat quae dignissimos optio corrupti eligendi laborum autem obcaecati libero, id velit et eveniet, quo sed ad voluptas. Soluta deleniti dolorem, quos dignissimos, at ad sunt earum explicabo exercitationem laudantium nam saepe ipsa, asperiores similique! Harum at quidem facilis iste laudantium neque amet, voluptatem, ad dignissimos cupiditate quaerat natus perferendis inventore sapiente ut.
                     </div>
                     <div class="flex items-center justify-between mt-6">
                         <div class="flex items-center text-xs font-semibold space-x-2 text-gray-400">
@@ -61,7 +63,7 @@
                         </div>
                         <div class="flex items-center space-x-2">
                             <div class="bg-gray-200 text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">Open</div>
-                            <button class="relative bg-gray-100 hover:bg-gray-200 rounded-full h-7 transition duration-150 ease-in py-2 px-3">
+                            <button class="relative bg-gray-100 hover:bg-gray-200 rounded-full h-7 transition duration-150 ease-in py-2 px-3 border">
                                 <svg fill="currentColor" class="text-gray-400" width="24" height="6">
                                     <path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z">
                                     </path>
