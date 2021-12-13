@@ -25813,6 +25813,39 @@ select {
   opacity: 1;
 }
 
+.status--open {
+  --tw-bg-opacity: 1;
+  background-color: rgba(229, 229, 229, var(--tw-bg-opacity));
+}
+
+.status--considering {
+  --tw-bg-opacity: 1;
+  background-color: rgba(139, 96, 237, var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.status--in-progress {
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 199, 60, var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.status--implemented {
+  --tw-bg-opacity: 1;
+  background-color: rgba(26, 171, 139, var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.status--closed {
+  --tw-bg-opacity: 1;
+  background-color: rgba(236, 69, 79, var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
