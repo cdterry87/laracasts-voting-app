@@ -55,4 +55,9 @@ class User extends Authenticatable
 
         return 'https://www.gravatar.com/avatar/' . md5($this->email) . '?s=200&d=https://s3.amazonaws.com/laracasts/images/forum/avatars/default-avatar-' . $randomDigit . '.png';
     }
+
+    public function votes()
+    {
+        return $this->belongsToMany(Idea::class, 'votes');
+    }
 }

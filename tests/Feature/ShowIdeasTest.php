@@ -2,11 +2,12 @@
 
 namespace Tests\Feature;
 
-use App\Models\Category;
-use App\Models\Idea;
-use App\Models\Status;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\Models\Idea;
+use App\Models\User;
+use App\Models\Status;
+use App\Models\Category;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ShowIdeasTest extends TestCase
 {
@@ -15,6 +16,8 @@ class ShowIdeasTest extends TestCase
     /** @test */
     public function ideas_list_shows_on_main_page()
     {
+        $user = User::factory()->create();
+
         $categoryOne = Category::factory()->create([
             'name' => 'Category One',
         ]);
@@ -34,6 +37,7 @@ class ShowIdeasTest extends TestCase
         ]);
 
         $ideaOne = Idea::factory()->create([
+            'user_id' => $user->id,
             'title' => 'Idea One',
             'category_id' => $categoryOne->id,
             'status_id' => $statusOpen->id,
@@ -41,6 +45,7 @@ class ShowIdeasTest extends TestCase
         ]);
 
         $ideaTwo = Idea::factory()->create([
+            'user_id' => $user->id,
             'title' => 'Idea Two',
             'category_id' => $categoryTwo->id,
             'status_id' => $statusClosed->id,
@@ -63,6 +68,8 @@ class ShowIdeasTest extends TestCase
     /** @test */
     public function idea_shows_correctly_on_show_page()
     {
+        $user = User::factory()->create();
+
         $category = Category::factory()->create([
             'name' => 'Category One',
         ]);
@@ -73,6 +80,7 @@ class ShowIdeasTest extends TestCase
         ]);
 
         $idea = Idea::factory()->create([
+            'user_id' => $user->id,
             'title' => 'Idea One',
             'category_id' => $category->id,
             'status_id' => $statusOpen->id,
@@ -89,6 +97,8 @@ class ShowIdeasTest extends TestCase
     /** @test */
     public function ideas_pagination_works()
     {
+        $user = User::factory()->create();
+
         $category = Category::factory()->create([
             'name' => 'Category One',
         ]);
@@ -99,6 +109,7 @@ class ShowIdeasTest extends TestCase
         ]);
 
         Idea::factory(Idea::PAGINATION_COUNT + 1)->create([
+            'user_id' => $user->id,
             'category_id' => $category->id,
             'status_id' => $statusOpen->id,
         ]);
@@ -125,6 +136,8 @@ class ShowIdeasTest extends TestCase
     /** @test */
     public function same_idea_title_different_slugs()
     {
+        $user = User::factory()->create();
+
         $category = Category::factory()->create([
             'name' => 'Category One',
         ]);
@@ -135,6 +148,7 @@ class ShowIdeasTest extends TestCase
         ]);
 
         $ideaOne = Idea::factory()->create([
+            'user_id' => $user->id,
             'title' => 'My First Idea',
             'category_id' => $category->id,
             'status_id' => $statusOpen->id,
@@ -142,6 +156,7 @@ class ShowIdeasTest extends TestCase
         ]);
 
         $ideaTwo = Idea::factory()->create([
+            'user_id' => $user->id,
             'title' => 'My First Idea',
             'category_id' => $category->id,
             'status_id' => $statusOpen->id,
