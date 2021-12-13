@@ -32,11 +32,13 @@
         @foreach($ideas as $idea)
             <div
                 x-data
-                @click="const target = $event.target.tagName.toLowerCase()
-                const ignores = ['button','svg','path','a', 'img']
-                const ideaLink = $event.target.closest('.idea-container').querySelector('.idea-link')
 
-                !ignores.includes(target) && ideaLink.click()"
+                @click="const target = $event.target.tagName.toLowerCase()
+                    const ignores = ['button','svg','path','a', 'img']
+                    const ideaLink = $event.target.closest('.idea-container').querySelector('.idea-link')
+
+                    !ignores.includes(target) && ideaLink.click()"
+
                 class="idea-container bg-white rounded-xl flex cursor-pointer"
             >
                 <div class="hidden md:block border-r border-gray-100 px-5 py-8">
@@ -52,7 +54,7 @@
                 <div class="flex flex-col md:flex-row flex-1 px-2 py-6">
                     <div class="flex-none mx-2 md:mx-4">
                         <a href="#">
-                            <img src="https://source.unsplash.com/200x200/?face&crop=face&v=1" alt="avatar" class="w-14 h-14 rounded-xl">
+                            <img src="{{ $idea->user->getAvatar() }}" alt="avatar" class="w-14 h-14 rounded-xl">
                         </a>
                     </div>
                     <div class="mx-4 w-full flex flex-col justify-between">
