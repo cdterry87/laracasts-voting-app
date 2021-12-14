@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Http\Livewire\IdeasIndex;
 use Tests\TestCase;
 use App\Models\Idea;
 use App\Models\User;
@@ -51,7 +52,7 @@ class StatusFiltersTest extends TestCase
         ]);
 
         $this->get(route('idea.show', $idea))
-            ->assertSeeLivewire('status-filters');  
+            ->assertSeeLivewire('status-filters');
     }
 
     /** @test */
@@ -121,19 +122,26 @@ class StatusFiltersTest extends TestCase
             'status_id' => $statusInProgress->id,
         ]);
 
-        $response = $this->get(route('idea.index', [
-            'status' => 'Considering'
-        ]));
-        $response->assertSuccessful();
-        $response->assertSee('status--considering', false);
-        $response->assertDontSee('status--in-progress', false);
+        // $response = $this->get(route('idea.index', [
+        //     'status' => 'Considering'
+        // ]));
+        // $response->assertSuccessful();
+        // $response->assertSee('status--considering', false);
+        // $response->assertDontSee('status--in-progress', false);
 
-        $response = $this->get(route('idea.index', [
-            'status' => 'In Progress'
-        ]));
-        $response->assertSuccessful();
-        $response->assertDontSee('status--considering', false);
-        $response->assertSee('status--in-progress', false);
+        // $response = $this->get(route('idea.index', [
+        //     'status' => 'In Progress'
+        // ]));
+        // $response->assertSuccessful();
+        // $response->assertDontSee('status--considering', false);
+        // $response->assertSee('status--in-progress', false);
+
+        Livewire::withQueryParams(['status' => 'In Progress'])
+            ->test(IdeasIndex::class)
+            ->assertViewHas('ideas', function ($ideas) {
+                return $ideas->count() === 2
+                    && $ideas->first()->status->name === 'In Progress';
+            });
     }
 
     /** @test */
