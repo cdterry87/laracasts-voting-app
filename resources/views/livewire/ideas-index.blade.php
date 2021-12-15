@@ -12,14 +12,13 @@
             </select>
         </div>
         <div class="w-full md:w-1/4">
-            <select name="filter"
+            <select name="filter" 
+                    wire:model="filter"
                     id="filter"
                     class="w-full rounded-xl px-4 py-2 border-none">
-                <option value="">Other Filters</option>
-                <option value="Filter One">Filter One</option>
-                <option value="Filter Two">Filter Two</option>
-                <option value="Filter Three">Filter Three</option>
-                <option value="Filter Four">Filter Four</option>
+                <option value="No Filter">No Filters</option>
+                <option value="Top Voted">Top Voted</option>
+                <option value="My Ideas">My Ideas</option>
             </select>
         </div>
         <div class="w-full md:w-1/2 relative">
