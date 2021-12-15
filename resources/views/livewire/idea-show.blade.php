@@ -1,7 +1,7 @@
 <div class="idea-and-buttons-container">
     <div class="idea-container bg-white rounded-xl flex mt-4">
         <div class="flex flex-col md:flex-row flex-1 px-4 py-6">
-            <div class="flex-none mx-4">
+            <div class="flex-none mx-2">
                 <a href="#">
                     <img src="{{ $idea->user->getAvatar() }}"
                          alt="avatar"
@@ -10,8 +10,7 @@
             </div>
             <div class="mx-4 w-full">
                 <h4 class="text-xl font-semibold mt-2 md:mt-0">
-                    <a href="#"
-                       class="hover:underline">{{ $idea->title }}</a>
+                    {{ $idea->title }}
                 </h4>
                 <div class="text-gray-600 line-clamp-3">
                     {{ $idea->description}}

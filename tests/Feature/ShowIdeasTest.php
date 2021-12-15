@@ -171,4 +171,95 @@ class ShowIdeasTest extends TestCase
         $response->assertSuccessful();
         $this->assertTrue(request()->path() === 'ideas/my-first-idea-2');
     }
+
+    /** @test */
+    public function in_app_back_button_works_when_index_page_visited_first()
+    {
+        $user = User::factory()->create();
+
+        $categoryOne = Category::factory()->create([
+            'name' => 'Category One',
+        ]);
+
+        $categoryTwo = Category::factory()->create([
+            'name' => 'Category Two',
+        ]);
+
+        $statusOpen = Status::factory()->create([
+            'name' => 'Open',
+            'classes' => 'status--open'
+        ]);
+
+        $statusClosed = Status::factory()->create([
+            'name' => 'Closed',
+            'classes' => 'status--closed'
+        ]);
+
+        $ideaOne = Idea::factory()->create([
+            'user_id' => $user->id,
+            'title' => 'Idea One',
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusOpen->id,
+            'description' => 'Description One',
+        ]);
+
+        $ideaTwo = Idea::factory()->create([
+            'user_id' => $user->id,
+            'title' => 'Idea Two',
+            'category_id' => $categoryTwo->id,
+            'status_id' => $statusClosed->id,
+            'description' => 'Description Two',
+        ]);
+
+        $response = $this->get(route('idea.index'));
+
+        $response = $this->get('/?category=Category%202&status=Closed');
+        $response = $this->get(route('idea.show', $ideaOne));
+
+        $this->assertStringContainsString('/?category=Category%202&status=Closed', $response['backUrl']);
+    }
+
+    /** @test */
+    public function in_app_back_button_works_when_show_page_only_visited()
+    {
+        $user = User::factory()->create();
+
+        $categoryOne = Category::factory()->create([
+            'name' => 'Category One',
+        ]);
+
+        $categoryTwo = Category::factory()->create([
+            'name' => 'Category Two',
+        ]);
+
+        $statusOpen = Status::factory()->create([
+            'name' => 'Open',
+            'classes' => 'status--open'
+        ]);
+
+        $statusClosed = Status::factory()->create([
+            'name' => 'Closed',
+            'classes' => 'status--closed'
+        ]);
+
+        $ideaOne = Idea::factory()->create([
+            'user_id' => $user->id,
+            'title' => 'Idea One',
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusOpen->id,
+            'description' => 'Description One',
+        ]);
+
+        $ideaTwo = Idea::factory()->create([
+            'user_id' => $user->id,
+            'title' => 'Idea Two',
+            'category_id' => $categoryTwo->id,
+            'status_id' => $statusClosed->id,
+            'description' => 'Description Two',
+        ]);
+
+        $response = $this->get(route('idea.show', $ideaOne));
+
+        $this->assertEquals(route('idea.index'), $response['backUrl']);
+    }
 }
