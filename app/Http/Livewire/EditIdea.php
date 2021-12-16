@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Idea;
 use Livewire\Component;
 use App\Models\Category;
-use Illuminate\Support\Facades\Response;
+use Illuminate\Http\Response;
 
 class EditIdea extends Component
 {
