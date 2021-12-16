@@ -81,6 +81,11 @@ class CreateIdeaTest extends TestCase
         $this->assertDatabaseHas('ideas', [
             'title' => 'Idea Title',
         ]);
+
+        $this->assertDatabaseHas('votes', [
+            'idea_id' => 1,
+            'user_id' => $user->id
+        ]);
     }
 
     /** @test */

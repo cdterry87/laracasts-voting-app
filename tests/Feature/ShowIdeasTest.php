@@ -27,12 +27,12 @@ class ShowIdeasTest extends TestCase
         ]);
 
         $statusOpen = Status::factory()->create([
-            'name' => 'Open',
+            'name' => 'OpenUnique',
             'classes' => 'status--open'
         ]);
 
         $statusClosed = Status::factory()->create([
-            'name' => 'Closed',
+            'name' => 'ClosedUnique',
             'classes' => 'status--closed'
         ]);
 
@@ -59,10 +59,12 @@ class ShowIdeasTest extends TestCase
         $response->assertSee($ideaOne->description);
         $response->assertSee($categoryOne->name);
         $response->assertSee('status--open');
+        $response->assertSee($statusOpen->name);
         $response->assertSee($ideaTwo->title);
         $response->assertSee($ideaTwo->description);
         $response->assertSee($categoryTwo->name);
         $response->assertSee('status--closed');
+        $response->assertSee($statusClosed->name);
     }
 
     /** @test */
@@ -75,7 +77,7 @@ class ShowIdeasTest extends TestCase
         ]);
 
         $statusOpen = Status::factory()->create([
-            'name' => 'Open',
+            'name' => 'OpenUnique',
             'classes' => 'status--open'
         ]);
 
@@ -92,6 +94,7 @@ class ShowIdeasTest extends TestCase
         $response->assertSuccessful();
         $response->assertSee($idea->title);
         $response->assertSee($idea->description);
+        $response->assertSee($statusOpen->name);
     }
 
     /** @test */

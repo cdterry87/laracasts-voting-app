@@ -2,10 +2,11 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Category;
 use App\Models\Idea;
-use Illuminate\Http\Response;
+use App\Models\Vote;
 use Livewire\Component;
+use App\Models\Category;
+use Illuminate\Http\Response;
 
 class CreateIdea extends Component
 {
@@ -28,22 +29,27 @@ class CreateIdea extends Component
 
     public function createIdea()
     {
-        if (auth()->check()) {
-            $this->validate();
-
-            Idea::create([
-                'user_id' => auth()->id(),
-                'category_id' => $this->category,
-                'status_id' => 1,
-                'title' => $this->title,
-                'description' => $this->description,
-            ]);
-
-            session()->flash('success_message', 'Idea created successfully!');
-            $this->reset();
-            return redirect()->route('idea.index');
+        // Abort if user is not logged in
+        if (auth()->guest()) {
+            abort(Response::HTTP_FORBIDDEN);
         }
 
-        abort(Response::HTTP_FORBIDDEN);
+        $this->validate();
+
+        $idea = Idea::create([
+            'user_id' => auth()->id(),
+            'category_id' => $this->category,
+            'status_id' => 1,
+            'title' => $this->title,
+            'description' => $this->description,
+        ]);
+
+        // Automatically vote for the idea when it is created
+        $idea->vote(auth()->user());
+
+        session()->flash('success_message', 'Idea created successfully!');
+        $this->reset();
+        return redirect()->route('idea.index');
+
     }
 }
