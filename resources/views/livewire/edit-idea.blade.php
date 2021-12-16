@@ -1,6 +1,11 @@
 <div x-cloak
      x-data="{ isOpen: false }"
      x-show="isOpen"
+     x-init="
+        window.livewire.on('ideaUpdated', () => {
+            isOpen = false
+        })
+    "
      @keydown.escape.window="isOpen = false"
      @edit-idea-modal.window="isOpen = true"
      class="fixed z-10 inset-0 overflow-y-auto"
@@ -49,7 +54,7 @@
                     You have one hour to edit your idea from the time you created it.
                 </p>
 
-                <form wire:submit.prevent="createIdea"
+                <form wire:submit.prevent="updateIdea"
                       class="space-y-4 px-4 py-6">
                     <div>
                         <input wire:model.defer="title"
@@ -106,7 +111,7 @@
                         </button>
                         <button type="submit"
                                 class="text-white w-1/2 h-11 text-xs bg-blue font-semibold rounded-xl border border-blue hover:bg-blue-hover transition duration-150 ease-in px-6 py-3">
-                            Submit
+                            Save
                         </button>
                     </div>
                 </form>

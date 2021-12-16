@@ -14,10 +14,16 @@ class IdeaShow extends Component
     public $hasVoted = false;
     
     protected $listeners = [
-        'statusUpdated'
+        'statusUpdated',
+        'ideaUpdated'
     ];
 
     public function statusUpdated()
+    {
+        $this->idea->refresh();
+    }
+
+    public function ideaUpdated()
     {
         $this->idea->refresh();
     }
