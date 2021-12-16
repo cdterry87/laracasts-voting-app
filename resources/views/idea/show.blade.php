@@ -20,6 +20,8 @@
   <livewire:idea-show :idea="$idea"
                       :votes="$votes" />
 
+  <livewire:edit-idea :idea="$idea" />
+
   <div class="comments-container space-y-6 md:ml-22 my-8 relative pt-4">
     <div class="comment-container bg-white rounded-xl flex mt-4 relative">
       <div class="flex flex-col md:flex-row flex-1 px-4 py-6">
@@ -44,16 +46,19 @@
             </div>
             <div class="flex items-center mt-2 md:mt-0 md:space-x-2"
                  x-data="{isOpen: false}">
-              <button @click="isOpen = !isOpen"
-                      class="relative bg-gray-100 hover:bg-gray-200 rounded-full h-7 transition duration-150 ease-in py-2 px-3 border">
-                <svg fill="currentColor"
-                     class="text-gray-400"
-                     width="24"
-                     height="6">
-                  <path
-                        d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z">
-                  </path>
-                </svg>
+              <div class="relative">
+                <button @click="isOpen = !isOpen"
+                        class="relative bg-gray-100 hover:bg-gray-200 rounded-full h-7 transition duration-150 ease-in py-2 px-3 border">
+                  <svg fill="currentColor"
+                       class="text-gray-400"
+                       width="24"
+                       height="6">
+                    <path
+                          d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z">
+                    </path>
+                  </svg>
+
+                </button>
                 <ul x-cloak
                     x-show="isOpen"
                     x-transition.origin.top.left.duration.200ms
@@ -68,7 +73,8 @@
                       post</a>
                   </li>
                 </ul>
-              </button>
+              </div>
+
             </div>
           </div>
         </div>
