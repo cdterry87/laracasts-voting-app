@@ -1,19 +1,16 @@
-<div class="fixed z-10 inset-0 overflow-y-auto"
+<div x-cloak
+     x-data="{ isOpen: false }"
+     x-show="isOpen"
+     @keydown.escape.window="isOpen = false"
+     @edit-idea-modal.window="isOpen = true"
+     class="fixed z-10 inset-0 overflow-y-auto"
      aria-labelledby="modal-title"
      role="dialog"
      aria-modal="true">
     <div class="flex items-end justify-center min-h-screen ">
-        <!--
-        Background overlay, show/hide based on modal state.
-  
-        Entering: "ease-out duration-300"
-          From: "opacity-0"
-          To: "opacity-100"
-        Leaving: "ease-in duration-200"
-          From: "opacity-100"
-          To: "opacity-0"
-      -->
-        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+        <div x-show="isOpen"
+             x-transition.opacity
+             class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
              aria-hidden="true"></div>
 
         <!--
@@ -26,10 +23,13 @@
           From: "opacity-100 translate-y-0 sm:scale-100"
           To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
       -->
-        <div
+        <div @click.away="isOpen = false"
+             x-show="isOpen"
+             x-transition.origin.bottom.duration.400ms.ease-in-out
              class="modal bg-white rounded-tl-xl rounded-tr-xl overflow-hidden transform transition-all py-4 sm:max-w-lg sm:w-full">
             <div class="absolute top-0 right-0 pt-4 pr-4">
-                <button class="text-gray-400 hover:text-gray-800">
+                <button @click="isOpen = false"
+                        class="text-gray-400 hover:text-gray-800">
                     <svg xmlns="http://www.w3.org/2000/svg"
                          class="h-6 w-6"
                          fill="none"

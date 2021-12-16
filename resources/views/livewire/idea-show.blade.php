@@ -43,14 +43,17 @@
                                 </svg>
                             </button>
 
-
                             <ul x-cloak
                                 x-show="isOpen"
                                 x-transition.origin.top.left.duration.200ms
                                 @click.away="isOpen = false"
                                 @keydown.escape.window="isOpen = false"
                                 class="absolute w-44 font-semibold z-20 bg-white rounded-xl py-3 ml-8 text-left shadow-dialog md:ml-8 top-8 md:top-6 right-0 md:left-0">
-                                <li><a href=""
+                                <li><a href="#"
+                                       @click="
+                                        isOpen = false
+                                        $dispatch('edit-idea-modal')
+                                    "
                                        class="hover:bg-gray-100 px-5 py-3 transition duration-150 ease-in block">Edit
                                         post</a>
                                 </li>
