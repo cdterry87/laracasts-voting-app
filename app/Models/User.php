@@ -67,4 +67,9 @@ class User extends Authenticatable
             'chase.terry87@gmail.com'
         ]);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
