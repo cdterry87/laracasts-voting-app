@@ -72,11 +72,13 @@
                     @keydown.escape.window="isOpen = false"
                     class="absolute z-20 w-44 font-semibold bg-white rounded-xl py-3 ml-8 text-left shadow-dialog md:ml-8 top-8 md:top-6 right-0 md:left-0">
                   <li><a href=""
-                       class="hover:bg-gray-100 px-5 py-3 transition duration-150 ease-in block">Mark as
-                      spam</a></li>
+                       class="hover:bg-gray-100 px-5 py-3 transition duration-150 ease-in block">
+                      Mark as spam
+                    </a></li>
                   <li><a href=""
-                       class="hover:bg-gray-100 px-5 py-3 transition duration-150 ease-in block">Delete
-                      post</a>
+                       class="hover:bg-gray-100 px-5 py-3 transition duration-150 ease-in block">
+                      Delete Idea
+                    </a>
                   </li>
                 </ul>
               </div>
