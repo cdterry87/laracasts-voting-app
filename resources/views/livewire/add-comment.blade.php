@@ -4,13 +4,32 @@
         Livewire.on('commentAdded', () => {
             isOpen = false
         })
+
+        Livewire.hook('message.processed', (message, compoennt) => {
+            if (message.updateQueue[0].payload.event === 'commentAdded' && message.component.fingerprint.name === 'idea-comments') {
+                const lastComment = document.querySelector('.comment-container:last-child')
+                lastComment.classList.add('border-2')
+                lastComment.classList.add('border-green')
+                lastComment.scrollIntoView({ behavior: 'smooth' })
+
+                setTimeout(() => {
+                    lastComment.classList.remove('border-2')
+                    lastComment.classList.remove('border-green')
+                }, 5000)
+            }
+        })
     "
     class="relative w-full md:w-auto"
 >
     <button
-        type="button"
-        @click="isOpen = !isOpen"
         class="text-white h-11 w-full md:w-32 text-sm bg-blue font-semibold rounded-xl border border-blue hover:bg-blue-hover transition duration-150 ease-in px-6 py-3"
+        type="button"
+        @click="
+        isOpen = !isOpen
+        if (isOpen) {
+            $nextTick(() => $refs.comment.focus())
+        }
+        "
     >
         Reply
     </button>
@@ -30,6 +49,7 @@
         >
             <div>
                 <textarea
+                    x-ref="comment"
                     wire:model="comment"
                     name="comment"
                     id="comment"
