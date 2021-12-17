@@ -99,6 +99,10 @@
             </div>
         </div>
     </main>
+
+    {{-- You can use @push('modals') directive to push modals to the bottom of this page --}}
+    {{-- @stack('modals') --}}
+
     @livewireScripts
 </body>
 

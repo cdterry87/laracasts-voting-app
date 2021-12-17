@@ -20,21 +20,7 @@
   <livewire:idea-show :idea="$idea"
                       :votes="$votes" />
 
-  @auth
-  @can('update', $idea)
-  <livewire:edit-idea :idea="$idea" />
-  @endcan
-
-  @can('delete', $idea)
-  <livewire:delete-idea :idea="$idea" />
-  @endcan
-
-  <livewire:mark-idea-as-spam :idea="$idea" />
-  @endauth
-
-  @admin
-  <livewire:mark-idea-as-not-spam :idea="$idea" />
-  @endadmin
+  <x-modals-container :idea="$idea" />
 
   <div class="comments-container space-y-6 md:ml-22 my-8 relative pt-4">
     <div class="comment-container bg-white rounded-xl flex mt-4 relative">
