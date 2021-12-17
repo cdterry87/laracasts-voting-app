@@ -15,7 +15,9 @@ class IdeaShow extends Component
     
     protected $listeners = [
         'statusUpdated',
-        'ideaUpdated'
+        'ideaUpdated',
+        'ideaMarkedAsSpam',
+        'ideaMarkedAsNotSpam',
     ];
 
     public function statusUpdated()
@@ -24,6 +26,16 @@ class IdeaShow extends Component
     }
 
     public function ideaUpdated()
+    {
+        $this->idea->refresh();
+    }
+
+    public function ideaMarkedAsSpam()
+    {
+        $this->idea->refresh();
+    }
+
+    public function ideaMarkedAsNotSpam()
     {
         $this->idea->refresh();
     }
