@@ -7,7 +7,10 @@
         })
     "
      @keydown.escape.window="isOpen = false"
-     @edit-idea-modal.window="isOpen = true"
+     @edit-idea-modal.window="
+        isOpen = true
+        $nextTick(() => $refs.title.focus())
+    "
      class="fixed z-10 inset-0 overflow-y-auto"
      aria-labelledby="modal-title"
      role="dialog"
@@ -58,6 +61,7 @@
                       class="space-y-4 px-4 py-6">
                     <div>
                         <input wire:model.defer="title"
+                               x-ref="title"
                                type="text"
                                class="w-full text-sm bg-gray-100 rounded-xl border-none placeholder-gray-900 px-4 py-2 "
                                placeholder="Your idea"

@@ -12,7 +12,7 @@
             </select>
         </div>
         <div class="w-full md:w-1/4">
-            <select name="filter" 
+            <select name="filter"
                     wire:model="filter"
                     id="filter"
                     class="w-full rounded-xl px-4 py-2 border-none">
@@ -36,27 +36,28 @@
                 </svg>
             </div>
             <input type="search"
-                    wire:model.debounce.1000ms="search"
+                   wire:model.debounce.1000ms="search"
                    placeholder="Find an idea"
                    class="w-full rounded-xl bg-white px-4 py-2 pl-8 border-none placeholder-gray-900">
         </div>
     </div>
 
-        @forelse($ideas as $idea)
-            <div class="ideas-container space-y-6 my-6 hover:shadow-card transition duration-150 ease-in">
-                <livewire:idea-index :idea="$idea"
+    @forelse($ideas as $idea)
+    <div class="ideas-container space-y-6 my-6 hover:shadow-card transition duration-150 ease-in">
+        <livewire:idea-index :idea="$idea"
                              :votes="$idea->votes_count"
                              :key="$idea->id" />
-            </div>
-        @empty
-            <div class="mx-auto w-70 mt-12">
-                <img src="https://raw.githubusercontent.com/laracasts/lc-voting/8fa083a3b8034e90b3c05b2d8e569e30721ac7d8/public/img/no-ideas.svg" alt="No Results" class="mx-auto mix-blend-luminosity">
-                <div class="text-gray-400 text-center font-bold mt-6">
-                    Sorry, No ideas were found.
-                </div>
-            </div>
-        @endforelse
     </div>
+    @empty
+    <div class="mx-auto w-70 mt-12">
+        <img src="https://raw.githubusercontent.com/laracasts/lc-voting/8fa083a3b8034e90b3c05b2d8e569e30721ac7d8/public/img/no-ideas.svg"
+             alt="No Results"
+             class="mx-auto mix-blend-luminosity">
+        <div class="text-gray-400 text-center font-bold mt-6">
+            Sorry, No ideas were found.
+        </div>
+    </div>
+    @endforelse
 
     <div class="my-8">
         {{ $ideas->links() }}
