@@ -38,6 +38,10 @@
       Livewire.on('ideaMarkedAsNotSpam', (message) => {
         showNotification(message)
       })
+
+      Livewire.on('commentAdded', (message) => {
+        showNotification(message)
+      })
     @endif
   "
   @keydown.escape.window="isOpen = false"
