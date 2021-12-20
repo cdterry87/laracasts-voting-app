@@ -2,6 +2,7 @@
     x-data="{
         isOpen: false
     }"
+    wire:poll="getNotificationCount"
     class="relative"
 >
     <button @click="
