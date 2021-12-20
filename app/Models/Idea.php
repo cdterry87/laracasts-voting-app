@@ -14,9 +14,8 @@ class Idea extends Model
 {
     use HasFactory, Sluggable;
 
-    const PAGINATION_COUNT = 10;
-
     protected $guarded = [];
+    protected $perPage = 10;
 
     public function sluggable(): array
     {
@@ -77,7 +76,7 @@ class Idea extends Model
     {
         $voteToDelete = Vote::where('idea_id', $this->id)
             ->where('user_id', $user->id);
-        
+
         if ($voteToDelete->exists()) {
             $voteToDelete->delete();
         } else {

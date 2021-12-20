@@ -5,7 +5,12 @@
             isOpen = false
         })
 
-        Livewire.hook('message.processed', (message, compoennt) => {
+        Livewire.hook('message.processed', (message, component) => {
+            if (['gotoPage', 'previousPage', 'nextPage'].includes(message.updateQueue[0].method)) {
+                const firstComment = document.querySelector('.comment-container:first-child')
+                firstComment.scrollIntoView({ behavior: 'smooth'})
+            }
+
             if (message.updateQueue[0].payload.event === 'commentAdded' && message.component.fingerprint.name === 'idea-comments') {
                 const lastComment = document.querySelector('.comment-container:last-child')
                 lastComment.classList.add('border-2')
