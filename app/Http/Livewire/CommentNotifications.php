@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Illuminate\Http\Response;
+use Illuminate\Notifications\DatabaseNotification;
 
 class CommentNotifications extends Component
 {
@@ -38,6 +40,29 @@ class CommentNotifications extends Component
             ->take(self::NOTIFICATION_LIMIT);
 
         $this->isLoading = false;
+    }
+
+    public function markAsRead($notificationId)
+    {
+        if (auth()->guest()) {
+            abort(Response::HTTP_FORBIDDEN);
+        }
+
+        $notification = DatabaseNotification::findOrFail($notificationId);
+        $notification->markAsRead();
+
+        return redirect()->route('idea.show', $notification->data['idea_slug']);
+    }
+
+    public function markAllAsRead()
+    {
+        if (auth()->guest()) {
+            abort(Response::HTTP_FORBIDDEN);
+        }
+
+        auth()->user()->unreadNotifications->markAsRead();
+        $this->getNotificationsCount();
+        $this->getNotifications();
     }
 
     public function render()
