@@ -46,6 +46,10 @@
       Livewire.on('commentUpdated', (message) => {
         showNotification(message)
       })
+
+      Livewire.on('commentDeleted', (message) => {
+        showNotification(message)
+      })
     @endif
   "
   @keydown.escape.window="isOpen = false"

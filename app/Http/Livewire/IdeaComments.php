@@ -14,7 +14,8 @@ class IdeaComments extends Component
     public $idea;
 
     protected $listeners = [
-        'commentAdded'
+        'commentAdded',
+        'commentDeleted'
     ];
 
     public function commentAdded()
@@ -23,6 +24,12 @@ class IdeaComments extends Component
 
         // GO to the last page when adding a new comment
         $this->goToPage($this->idea->comments()->paginate()->lastPage());
+    }
+
+    public function commentDeleted()
+    {
+        $this->idea->refresh();
+        $this->goToPage(1);
     }
 
     public function mount(Idea $idea)

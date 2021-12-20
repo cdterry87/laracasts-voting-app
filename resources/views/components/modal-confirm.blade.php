@@ -1,31 +1,41 @@
 @props([
-'event-to-open-modal',
-'event-to-close-modal',
-'modal-title',
-'modal-description',
-'modal-confirm-button-text',
-'wire-click'
+    'eventToOpenModal' => null,
+    'livewireEventToOpenModal' => null,
+    'eventToCloseModal',
+    'modalTitle',
+    'modalDescription',
+    'modalConfirmButtonText',
+    'wireClick',
 ])
 
 <div
-  x-cloak
-  x-data="{ isOpen: false }"
-  x-show="isOpen"
-  x-init="
+    x-cloak
+    x-data="{ isOpen: false }"
+    x-show="isOpen"
+    @keydown.escape.window="isOpen = false"
+    @if (! $livewireEventToOpenModal)
+        {{ '@'.$eventToOpenModal }}.window="
+            isOpen = true
+            $nextTick(() => $refs.confirmButton.focus())
+        "
+    @endif
+
+    x-init="
         Livewire.on('{{ $eventToCloseModal }}', () => {
             isOpen = false
         })
+
+        @if ($livewireEventToOpenModal)
+            Livewire.on('{{ $livewireEventToOpenModal }}', () => {
+                isOpen = true
+                $nextTick(() => $refs.confirmButton.focus())
+            })
+        @endif
     "
-  @keydown.escape.window="isOpen = false"
-  {{ "@{$eventToOpenModal}"
-  }}.window="
-        isOpen = true
-        $nextTick(() => $refs.confirmButton.focus())
-    "
-  class="fixed z-20 inset-0 overflow-y-auto"
-  aria-labelledby="modal-title"
-  role="dialog"
-  aria-modal="true"
+    class="fixed z-20 inset-0 overflow-y-auto"
+    aria-labelledby="modal-title"
+    role="dialog"
+    aria-modal="true"
 >
   <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
 

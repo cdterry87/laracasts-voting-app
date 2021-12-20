@@ -12,13 +12,14 @@ class IdeaShow extends Component
     public $idea;
     public $votes;
     public $hasVoted = false;
-    
+
     protected $listeners = [
         'statusUpdated',
         'ideaUpdated',
         'ideaMarkedAsSpam',
         'ideaMarkedAsNotSpam',
-        'commentAdded'
+        'commentAdded',
+        'commentDeleted'
     ];
 
     public function statusUpdated()
@@ -42,6 +43,11 @@ class IdeaShow extends Component
     }
 
     public function commentAdded()
+    {
+        $this->idea->refresh();
+    }
+
+    public function commentDeleted()
     {
         $this->idea->refresh();
     }
@@ -71,7 +77,6 @@ class IdeaShow extends Component
             try {
                 $this->idea->vote(auth()->user());
             } catch (DuplicateVoteException $e) {
-
             }
             $this->votes += 1;
             $this->hasVoted = true;
