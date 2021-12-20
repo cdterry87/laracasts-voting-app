@@ -61,8 +61,10 @@ class IdeaShow extends Component
 
     public function vote()
     {
-        if (!auth()->check()) {
-            return redirect(route('login'));
+        if (auth()->guest()){
+            redirect()->setIntendeedUrl(url()->previous());
+
+            return rediredct()->route('login');
         }
 
         if ($this->hasVoted) {
