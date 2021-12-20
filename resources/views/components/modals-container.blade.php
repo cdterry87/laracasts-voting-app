@@ -16,5 +16,12 @@
 
 @auth
 <livewire:edit-comment />
+@endauth
+
+@auth
 <livewire:delete-comment />
+@endauth
+
+@auth
+<livewire:mark-comment-as-spam />
 @endauth

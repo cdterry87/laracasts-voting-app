@@ -11,6 +11,13 @@
         </div>
         <div class="mx-1 md:mx-4 w-full md:mt-0">
             <div class="text-gray-600">
+                @admin
+                @if ($comment->spam_reports > 0)
+                <div class="text-red my-2">
+                    Spam reports: {{ $comment->spam_reports }}
+                </div>
+                @endif
+                @endadmin
                 {{ $comment->body}}
             </div>
             <div class="flex items-center justify-between mt-6">
@@ -81,13 +88,16 @@
                             </li>
                             @endcan
                             <li><a
-                                    href=""
+                                    href="#"
+                                    @click.prevent="
+                                        isOpen = false
+                                        Livewire.emit('setMarkAsSpamComment', {{ $comment->id }})
+                                    "
                                     class="hover:bg-gray-100 px-5 py-3 transition duration-150 ease-in block"
                                 >
                                     Mark as spam
                                 </a>
                             </li>
-
                         </ul>
                     </div>
                 </div>

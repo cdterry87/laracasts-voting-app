@@ -50,6 +50,10 @@
       Livewire.on('commentDeleted', (message) => {
         showNotification(message)
       })
+
+      Livewire.on('commentWasMarkedAsSpam', (message) => {
+        showNotification(message)
+      })
     @endif
   "
   @keydown.escape.window="isOpen = false"
