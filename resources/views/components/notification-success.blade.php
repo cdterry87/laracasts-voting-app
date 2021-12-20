@@ -5,8 +5,8 @@
 
 <div
   x-cloak
-  x-data="{ 
-    isOpen: false, 
+  x-data="{
+    isOpen: false,
     messageToDisplay: '{{ $messageToDisplay }}',
     showNotification (message) {
       this.isOpen = true
@@ -40,6 +40,10 @@
       })
 
       Livewire.on('commentAdded', (message) => {
+        showNotification(message)
+      })
+
+      Livewire.on('commentUpdated', (message) => {
         showNotification(message)
       })
     @endif

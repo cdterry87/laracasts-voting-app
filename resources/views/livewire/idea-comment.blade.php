@@ -23,6 +23,7 @@
                     @endif
                     <div>{{ $comment->created_at->diffForHumans() }}</div>
                 </div>
+                @auth
                 <div
                     class="flex items-center mt-2 md:mt-0 md:space-x-2"
                     x-data="{isOpen: false}"
@@ -53,23 +54,40 @@
                             @keydown.escape.window="isOpen = false"
                             class="absolute z-20 w-44 font-semibold bg-white rounded-xl py-3 ml-8 text-left shadow-dialog md:ml-8 top-8 md:top-6 right-0 md:left-0"
                         >
+                            @can('update', $comment)
+                            <li><a
+                                    href="#"
+                                    @click.prevent="
+                                        isOpen = false
+                                        Livewire.emit('setEditComment', {{ $comment->id }})
+                                    "
+                                    class="hover:bg-gray-100 px-5 py-3 transition duration-150 ease-in block"
+                                >
+                                    Edit Post
+                                </a>
+                            </li>
+                            @endcan
+
                             <li><a
                                     href=""
                                     class="hover:bg-gray-100 px-5 py-3 transition duration-150 ease-in block"
                                 >
                                     Mark as spam
-                                </a></li>
+                                </a>
+                            </li>
+                            @can('delete', $comment)
                             <li><a
                                     href=""
                                     class="hover:bg-gray-100 px-5 py-3 transition duration-150 ease-in block"
                                 >
-                                    Delete Idea
+                                    Delete Post
                                 </a>
                             </li>
+                            @endcan
                         </ul>
                     </div>
-
                 </div>
+                @endauth
             </div>
         </div>
     </div>
